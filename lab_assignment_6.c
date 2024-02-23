@@ -2,10 +2,22 @@
 
 int search(int numbers[], int low, int high, int value) 
 {
-	//binary search
-	//recursive
+	if(low > high){
+        return -1;
+    }
 
-	return -1;
+    int middle = low + (high - low) / 2;
+
+    if(numbers[middle] == value){                               //if the value is present in the middle, return itself
+        return middle;
+    }
+    else if(numbers[middle] < value ){                          //if the targeted value is more than the 'middle' value, look in the right subarray
+        return search(numbers, middle + 1, high, value);
+    }
+    else if (numbers[middle] > value){                          //if the targeted value is less than the 'middle' value, look in the left subarray
+        return search(numbers, low, middle -1, value);
+    }
+
 }
 
 void printArray(int numbers[], int sz)
